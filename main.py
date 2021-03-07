@@ -25,6 +25,7 @@
 #N if they are verified move ahead
 #N ask what do they want to update
 #N update table USERS accordigly
+import BOOK, BookReturnRecords, BORROWERS_RECORDS, STUDENT, USERS
 stforstud=input("ARE YOU A STAFF MEMBER OR A STUDENT? (STAFF/STUDENT)")
 if stforstud.upper()=="STAFF":
     print("YOU ARE WELCOME!!!")
@@ -48,8 +49,7 @@ if stforstud.upper()=="STAFF":
         elif dataorbook.upper()=="BOOK":
             addormanage=input("DO YOU WANT TO ADD THE BOOK OR MANAGE THE DATA OF THE CURRENT BOOKS? (ADD/MANAGE)")
             if addormanage.upper()=="ADD":
-                #TODO TO ADD A NEW BOOK IN THE DATABASE AND UPDATE THE TABLE BOOK
-                pass
+                BOOK()
             elif addormanage.upper()=="MANAGE":
                 #TODO QUERY TO MANAGE THE TABLE BOOK ACCRODING TO USERS NEED
                 pass
@@ -58,8 +58,7 @@ if stforstud.upper()=="STAFF":
     elif neworold.upper()=="NO":
         registerornot=input("DO YOU WANT TO REGISTER AS A NEW STAFF MEMBER OF THIS LIBRARY? (YES/NO)")
         if registerornot.upper()=="YES":
-            #TODO QUERY TO ASK FOR THE REQUIRED INFORMATION NEEDED TO REGISTER THE NEW STAFF MEMBER ACCORDING TO THE TABLE USERS
-            pass
+            USERS()
         elif registerornot.upper()=="NO":
             print("TRY TO NOT WASTE TIME OF OURS AND OTHERS, THANK YOU!!!")
         else:
@@ -76,8 +75,7 @@ elif stforstud.upper()=="STUDENT":
     elif existingornot.upper()=="NO":
         registerornot_=input("DO YOU WANT TO REGISTER YOUR RECORDS IN THIS LIBRARY,")
         if registerornot_.upper()=="YES":
-            #TODO QUERY TO ADD THE STUDENT INTO THE DATABASE AND UPADATE THE TABLE STUDENT
-            pass
+            STUDENT()
         elif registerornot_.upper()=="NO":
             print("EITHER REGISTER INTO YOURSELF INTO THE DATABASE OR YOU WON'T BE ABLE TO ACCESS THE LIBRARY")
             #TODO ADD AN OPTION TO GO BACK TO THE REGISTERING PART
