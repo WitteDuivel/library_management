@@ -25,7 +25,7 @@
 #N if they are verified move ahead
 #N ask what do they want to update
 #N update table USERS accordigly
-import BOOK, BookReturnRecords, BORROWERS_RECORDS, STUDENT, USERS, mysql.connector
+import mysql.connector,BOOK,BookReturnRecords,BORROWERS_RECORDS,STUDENT,USER
 mydb=mysql.connector.connect(host="localhost",user="root",passwd="2zkNKcz&EOZaRjc$",database="library")
 mycursor=mydb.cursor()
 stforstud=input("ARE YOU A STAFF MEMBER OR A STUDENT? (STAFF/STUDENT)")
@@ -33,8 +33,9 @@ if stforstud.upper()=="STAFF":
     print("YOU ARE WELCOME!!!")
     neworold=input("ARE YOU A REGISTERED STAFF MEMBER? (YES/NO)")
     if neworold.upper()=="YES":
-        staff_ID=int(input("PLEASE ENTER YOUR STAFF_ID:- "))
+        staffID=int(input("PLEASE ENTER YOUR STAFF_ID:- "))
         #TODO QUERY FOR CHECKING IF THE ID ENTERED EXISTS OR NOT
+        check1 = mycursor.execute('''SELECT staff_ID FROM USERS WHERE Staff_ID='StaffID' ''')
         #TODO IF EXISTS THEN AN IF STATEMENT TO VERIFY PASSWORD
         #TODO IF DOESN'T EXIST ASK IF THEY WANT TO REGISTER OR WANT TO LEAVE
         dataorbook=input("DO YOU WANT TO MANAGE YOUR DATA OR WANT TO MANAGE THE LIBRARY? (DATA/LIBRARY)")
@@ -42,7 +43,15 @@ if stforstud.upper()=="STAFF":
             wholeorpart=input("DO YOU WANT TO CHANGE A PARTICULAR DATA OR WANT TO UPDATE YOUR WHOLE RECORDS? (SOME/WHOLE)")
             if wholeorpart.upper()=="SOME":
                 which=input("WHICH OF THE FOLLOWING DATA YOU WANT TO UPDATE? ( staff_ID/stffname/stfflname/stffcontactnumber/stfemail/stfaddress/stfpassword/stftype)")
-                #TODO QUERY TO UPDATE THE CHOSEN RECORDS ACCRODINGLY
+                #TODO QUERY TO UPDATE THE CHOSEN RECORDS ACCRODINGL
+                mycursor.execute("INSERT INTO USERS [staff_ID] VALUES(staff)")
+                mycursor.execute("INSERT INTO USERS [stffname] VALUES(staff_name)")
+                mycursor.execute("INSERT INTO USERS stfflname] VALUES(stffl_name)")
+                mycursor.execute("INSERT INTO USERS [staffcontactnumber] VALUES(staffcontact)")
+                mycursor.execute("INSERT INTO USERS [stfemail] VALUES(stf_email)")
+                mycursor.execute("INSERT INTO USERS [stfaddress] VALUES(stf_address)")
+                mycursor.execute("INSERT INTO USERS [stfpassword] VALUES(stf_password)")
+                mycursor.execute("INSERT INTO USERS [stftype] VALUES(stf_type)")
             elif wholeorpart.upper()=="WHOLE":
                 #TODO QUERY TO UPDATE THE WHOLE RECORD OF THE CURRENT USER
                 pass
@@ -71,8 +80,9 @@ elif stforstud.upper()=="STUDENT":
     print("WELCOME PRECIOUS FUTURE OF THIS EARTH :)")
     existingornot=input("ARE YOU A REGISTERED STUDENT? (YES/NO)")
     if existingornot.upper()=="YES":
-        stud_ID=int(input("KINDLY ENTER YOUR STUDENT_ID PLEASE:- "))
+        studID=int(input("KINDLY ENTER YOUR STUDENT_ID PLEASE:- "))
         #TODO QUERY TO VERIFY THE AVAILIBILITY OF THE STUDENT IN THE DATABASE
+        check2 = mycursor.execute('''SELECT Stud_ID FROM STUDENT WHERE Stud_ID='studID' ''')
         #TODO IF THE STUDENT DOESN'T EXIST ASK THE STUDENT TO EITHER REGISTER OR LEAVE
     elif existingornot.upper()=="NO":
         registerornot_=input("DO YOU WANT TO REGISTER YOUR RECORDS IN THIS LIBRARY,")
