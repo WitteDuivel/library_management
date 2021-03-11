@@ -25,7 +25,9 @@
 #N if they are verified move ahead
 #N ask what do they want to update
 #N update table USERS accordigly
-import BOOK, BookReturnRecords, BORROWERS_RECORDS, STUDENT, USERS
+import BOOK, BookReturnRecords, BORROWERS_RECORDS, STUDENT, USERS, mysql.connector
+mydb=mysql.connector.connect(host="localhost",user="root",passwd="2zkNKcz&EOZaRjc$",database="library")
+mycursor=mydb.cursor()
 stforstud=input("ARE YOU A STAFF MEMBER OR A STUDENT? (STAFF/STUDENT)")
 if stforstud.upper()=="STAFF":
     print("YOU ARE WELCOME!!!")
